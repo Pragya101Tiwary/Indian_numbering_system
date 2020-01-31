@@ -12,7 +12,7 @@ class NumberingSystem extends JFrame{
 	private static String op="";
 	private static String numnum(long n) throws ArithmeticException{
 		long a=0;
-		int b=10, c=0, count=0;
+		int b=0, c=0, count=8;
 		if(n<0 || n>99999999999L){
 			throw new ArithmeticException("the number should not be less than 0 or greater than 99,99,99,99,999.");
 		}
@@ -27,23 +27,26 @@ class NumberingSystem extends JFrame{
 			a=n%1000;
 			tillThousand((int)a);
 			a=(n-a)/1000;
-				b=(int)a%100;
-				x:
+			b=(int)a%100;
+			while(a!=0){
+				count++;
 				if(b!=0){
 					if(b<=20)
-						op=s1[b-1]+" thousand "+op;
+						op=s1[b-1]+" "+s2[count]+" "+op;
 					else{
 						c=b%10;
+						op=s2[count]+" "+op;
 						if(c!=0){
-							op=s1[c-1]+" thousand "+op;
+							op=s1[c-1]+" "+op;
 						}
 						op=s2[((b-c)/10)-2]+" "+op;
 					}
-					b=(int)a%100;
-					break x;
 				}
+				a=((a-(a%100))/100);
+				b=(int)a%100;
+			}
 		}
-		return op;
+		return (char)(op.charAt(0)-32)+op.substring(1);
 	}
 	private static void tillHundred(int n){
 		int a=0;
