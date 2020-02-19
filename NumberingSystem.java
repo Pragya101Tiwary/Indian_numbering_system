@@ -1,8 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
-
-class NumberingSystem extends JFrame{
+class NumberingSystem{
 	private static String[] s1={
 		"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"
 	};
@@ -11,6 +7,7 @@ class NumberingSystem extends JFrame{
 	};
 	private static String op="";
 	private static String numnum(long n) throws ArithmeticException{
+		op="";
 		long a=0;
 		int b=0, c=0, count=8;
 		if(n<0 || n>99999999999L){
@@ -67,14 +64,5 @@ class NumberingSystem extends JFrame{
 		a=(n-(n%100))/100;
 		if(a!=0)
 			op=s1[a-1]+" hundred "+op;
-	}
-	/*NumberingSystem(){
-		super("Number Converter");
-		setSize();
-	}*/
-	public static void main(String[] args){
-		Scanner sc=new Scanner(System.in);
-		long n=sc.nextLong();
-		System.out.println(numnum(n));
 	}
 }
